@@ -1,0 +1,7 @@
+include CHANGES.txt
+include MANIFEST.in
+include README.md
+recursive-include sso_sp *.py
+recursive-include sso_sp/docs *.md
+recursive-include sso_sp/templates/ *.html
+recursive-include sso_sp/migrations/ *.py

@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+
+  cache:
+    image: redis
+    restart: always
+    volumes:
+      - ./docker/data/redis:/data
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/data/postgres:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: /code/bin/start_script.sh
+    volumes:
+      - .:/code
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+      - cache
+      - wdb
+    env_file:
+      - .env
+    environment:
+      WDB_SOCKET_SERVER: wdb
+      WDB_NO_BROWSER_AUTO_OPEN: 1
+
+  celery:
+    build: .
+    command: /code/bin/start_celery_script.sh
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - cache
+      - wdb
+    env_file:
+      - .env
+    environment:
+      WDB_SOCKET_SERVER: wdb
+      WDB_NO_BROWSER_AUTO_OPEN: 1
+
+  wdb:
+    image: kozea/wdb
+    ports:
+      - "1985:1984"
