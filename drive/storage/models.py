@@ -221,7 +221,7 @@ class Folder(AuditModel):
 def generate_path(self, filename):
     file_extension = filename.split('.')[-1]
     filename = "{}.{}".format(uuid.uuid4(), file_extension)
-    return "{0}/{1}".format(self.id, filename)
+    return "{0}/{1}".format(self.user.username, filename)
 
 class Data(AuditModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

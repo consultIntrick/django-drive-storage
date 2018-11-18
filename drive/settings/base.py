@@ -25,7 +25,7 @@ BASE_DIR = root()
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'k=m!b-4l05kburshizczv)zh%hz$hilxcxvz1r%k&fvgl06k2%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -128,15 +128,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_DEFAULT_ACL = None
 
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY')
-
-AWS_SECRET_ACCESS_KEY = env('AWS_ACCESS_SECRET')
-
-AWS_STORAGE_BUCKET_NAME = env('AWS_BUCKET_NAME')
+# AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY')
+#
+# AWS_SECRET_ACCESS_KEY = env('AWS_ACCESS_SECRET')
+#
+# AWS_STORAGE_BUCKET_NAME = env('AWS_BUCKET_NAME')
 
 CORS_ORIGIN_WHITELIST = ('127.0.0.1:3000', 'localhost:3000',)
 

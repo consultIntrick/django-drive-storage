@@ -142,7 +142,7 @@ class App extends Component {
                 className="col-md-12"
                 style={{
                 "marginBottom": "30px"
-              }}>Drive</h5>
+              }}>Drive - Home</h5>
               <h6 className="col-md-12">Manage Files/Folders</h6>
               <div
                 className="col-md-2"
@@ -255,7 +255,8 @@ class App extends Component {
                 style={{
                 "marginBottom": "30px"
               }}>
-                <a href={this.state.domain + file.url}>{file.name}</a>
+                <a href={this.state.domain + file.url}>{file.name}</a> &nbsp;
+                (<a style={{'cursor': 'pointer', 'color': 'blue'}} onClick={(e) => this.deleteFolder(e, file.delete_url)}>delete</a>)
               </div>)}
             </main>
           </div>
@@ -369,8 +370,7 @@ export class BinApp extends Component {
                 className="col-md-12"
                 style={{
                 "marginBottom": "30px"
-              }}>Drive</h5>
-              <h6 className="col-md-12">Bin</h6>
+              }}>Drive - Bin</h5>
             </main>
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 row">
               <h6
@@ -425,8 +425,9 @@ export class BinApp extends Component {
                 style={{
                 "marginBottom": "30px"
               }}>
-                <a href={this.state.domain + file.url}>{file.name}</a>
-              </div>)}
+                <a href={this.state.domain + file.url}>{file.name}</a> &nbsp;
+                (<a style={{'cursor': 'pointer', 'color': 'blue'}} onClick={(e) =>
+                this.restoreFolder(e, file.restore_url)}>restore</a>)</div>)}
             </main>
           </div>
         </div>
